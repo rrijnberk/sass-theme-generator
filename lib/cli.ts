@@ -56,11 +56,6 @@ function generateTheme() {
     }, renderResponseHandler);
 }
 
-function rimrafResponseHandler(callback = (() => {})) {
-
-    return callback;
-}
-
 /**
  * Remove existing theme content and generate the theme.
  */
