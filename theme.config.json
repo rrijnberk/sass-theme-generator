@@ -5,7 +5,5 @@
     "test/variables/_dimensions.scss",
     "test/constructs/_input.scss"
   ],
-  "sources": ["test/theme.scss"],
-  "target": "dist",
-  "name": "theme"
+  "sources": ["test/theme.scss"]
 }

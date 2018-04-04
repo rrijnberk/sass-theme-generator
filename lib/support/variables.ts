@@ -16,9 +16,11 @@ function assign(a, b) {
 }
 
 function stringify(object) {
-    return Object
-        .keys(object)
-        .map(key => `${key}: ${object[key].trim()};`)
+    return Object.keys(object)
+        .map((key) => {
+            // console.log('=>', key, object[key]);
+            return `${key}: ${object[key].trim()};`
+        })
         .join('\n');
 }
 

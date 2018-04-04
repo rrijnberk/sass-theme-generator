@@ -9,6 +9,8 @@ const renderResponseHandler = require('./handlers/render-response.handler.ts');
 const SassFile = require('./models/sass-file.model.ts');
 const Variables = require('./support/variables.ts');
 
+const noop = () => {};
+
 /**
  * Resolve and flatten variables.
  * @returns All variables in one string
@@ -19,7 +21,7 @@ function getVariables() {
         .map(scss => scss.toString())
         .map(Variables.objectify);
     return Variables.stringify(
-        variables.length > 1 ?
+        variables.length > 0 ?
             variables.reduce(Variables.assign) :
             variables
     );
@@ -57,7 +59,8 @@ function generateTheme() {
 /**
  * Remove existing theme content and generate the theme.
  */
-rimraf(config.target, generateTheme);
+rimraf(`${config.target}/${config.name}.css`, noop);
+rimraf(`${config.target}/src`, generateTheme);
 
 
 

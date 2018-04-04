@@ -1,6 +1,6 @@
 {
-  "name": "sass-theme",
-  "version": "1.0.0",
+  "name": "sass-theme-generator",
+  "version": "1.0.2",
   "description": "A generic theme compiler for node with variable overrides",
   "main": "main.ts",
   "bin": {

@@ -1,8 +1,6 @@
 {
   "variables": [
-    "test/variables/_color.scss",
-    "test/variables/_display.scss",
-    "test/variables/_dimensions.scss",
+    "test/variables/variables.scss",
     "test/constructs/_input.scss",
     "test/variables/_other.scss"
   ],
