@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A generic theme compiler for node with variable overrides",
   "main": "main.ts",
+  "bin": {
+    "sass-theme": "lib/cli.ts"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,5 +17,10 @@
     "Generator"
   ],
   "author": "R.Rijnberk <r.rijnberk@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^5.0.0",
+    "node-sass": "^4.8.3",
+    "rimraf": "^2.6.2"
+  }
 }

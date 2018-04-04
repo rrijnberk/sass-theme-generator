@@ -1,0 +1,11 @@
+{
+  "variables": [
+    "test/variables/_color.scss",
+    "test/variables/_display.scss",
+    "test/variables/_dimensions.scss",
+    "test/constructs/_input.scss"
+  ],
+  "sources": ["test/theme.scss"],
+  "target": "dist",
+  "name": "theme"
+}
