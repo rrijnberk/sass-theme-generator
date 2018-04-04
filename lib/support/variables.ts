@@ -12,12 +12,10 @@ function objectify(_content) {
 }
 
 function assign(a, b) {
-    console.log(a, b)
     return Object.assign(a, b);
 }
 
 function stringify(object) {
-    // console.log(object)
     return Object.keys(object)
         .map((key) => {
             // console.log('=>', key, object[key]);

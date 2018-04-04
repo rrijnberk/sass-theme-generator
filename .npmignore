@@ -1,0 +1,20 @@
+# IDE files
+.idea/
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Compiled code
+dist/
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Output of 'npm pack'
+*.tgz
+
+# Test config files
+theme.config*.json
