@@ -38,7 +38,18 @@ Given the following directory structure:
 
 ```
 
-The **theme.config.json** would then look like:
+And the required output:
+```
+/root
+ |
+ └──/target
+     └──/src
+     |   ├── royal_sources.scss
+     |   └── royal_variables.scss
+     └── royal.css
+```
+
+Then the **theme.config.json** would then look like:
 ```
 {
   "variables": [
@@ -46,7 +57,7 @@ The **theme.config.json** would then look like:
     "test/constructs/constructs.scss"
   ],
   "sources": ["test/theme.scss"],
-  "target": "dist",
-  "name": "theme"
+  "target": "target",
+  "name": "royal"
 }
 ```
