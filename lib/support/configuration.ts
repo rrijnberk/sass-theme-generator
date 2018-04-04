@@ -4,8 +4,8 @@ const _args = require('./arguments.ts');
 const _defaults = {
         variables: [],
         sources: [],
-        target: 'theme',
-        name: 'main.css'
+        target: 'dist',
+        name: 'theme.css'
     },
     __default_themeConfig = _path.resolve('./', 'theme.config.json');
 
