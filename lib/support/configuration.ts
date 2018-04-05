@@ -5,7 +5,7 @@ const _defaults = {
         variables: [],
         sources: [],
         target: 'dist',
-        name: 'theme.css'
+        name: 'theme'
     },
     __default_themeConfig = _path.resolve('./', 'theme.config.json');
 
