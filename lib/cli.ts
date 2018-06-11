@@ -44,16 +44,20 @@ function getSources() {
 function generateTheme() {
     // Resolve variable & source content
     const variables = getVariables(),
-        sources = getSources();
+        sources = getSources(),
+        compilationSource = variables.concat('\n\n', sources);
 
     // Write theme sources.
     file.write(config.target, `src/${config.name}_variables.scss`, variables);
     file.write(config.target, `src/${config.name}_sources.scss`, sources);
 
+    file.write(config.target, `tmp/compilation.source.scss`, compilationSource);
     // Write stylesheet.
     sass.render({
-        data: variables.concat(sources) || 'body {}'
+        data: compilationSource || 'body {}'
     }, renderResponseHandler);
+
+
 }
 
 /**

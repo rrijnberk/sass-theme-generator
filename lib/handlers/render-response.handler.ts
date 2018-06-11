@@ -1,9 +1,12 @@
 const config = require('./../support/configuration.ts');
-const path = require('path');
+const fileHandler = require('../support/file.ts');
 const fs = require('fs-extra');
+const path = require('path');
+
 
 const logError = (err) => {
-    console.error(err.message);
+    console.error(`${err.message} See line: ${err.line}, column: ${err.column} in tmp/compilation.source.scss.`);
+    process.exit(1);
 };
 
 const renderResponseHandler = (err, result) => {
@@ -19,6 +22,7 @@ const writeToTarget = (cssContent) => {
         file,
         cssContent
     );
+    fileHandler.remove(config.target, `tmp/`);
 };
 
 module.exports = renderResponseHandler;
