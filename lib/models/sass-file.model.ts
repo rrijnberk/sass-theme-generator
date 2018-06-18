@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
+const { scssFunctions } = require('../support/scss-functions.parser.ts');
 
 const importRegex = /\@import (?:\"|\')(.*?)(?:\"|\');/g;
 const uriRegex = /^(.*)\/(?:.*?).scss$/;
@@ -24,8 +25,9 @@ function SassFile(uri) {
 
     this.importedContent = (full, target) => {
         let filePath;
+
         if(fs.existsSync(filePath = path.resolve(_root, target.concat('.scss'))) ||
-            fs.existsSync(filePath = path.resolve(_root, '_'.concat(target, '.scss')))
+            fs.existsSync(filePath = path.resolve(_root, target.replace(/^(.*)\/(.*)$/, '$1/_$2.scss')))
         ) {
             return (new SassFile(filePath)).toString();
         } else {
@@ -34,7 +36,9 @@ function SassFile(uri) {
         }
     };
 
-    _content = _content.replace(importRegex, this.importedContent);
+    _content = _content
+        .replace(importRegex, this.importedContent)
+        .replace(scssFunctions.functionCommentResolver, scssFunctions.parse);
 
     this.toString = () => {
         return _content;

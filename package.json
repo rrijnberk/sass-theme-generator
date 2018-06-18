@@ -1,6 +1,6 @@
 {
   "name": "sass-theme-generator",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "A generic theme compiler for node with variable overrides",
   "repository": "https://github.com/rrijnberk/sass-theme-generator",
   "main": "main.ts",
@@ -8,7 +8,7 @@
     "sass-theme": "lib/cli.ts"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha **/*.spec.ts"
   },
   "keywords": [
     "Sass",
@@ -21,7 +21,11 @@
   "license": "MIT",
   "dependencies": {
     "fs-extra": "^5.0.0",
-    "node-sass": "^4.8.3",
+    "node-sass": "^4.9.0",
     "rimraf": "^2.6.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
   }
 }
