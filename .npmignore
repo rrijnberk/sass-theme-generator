@@ -1,5 +1,6 @@
 # IDE files
 .idea/
+*.iml
 
 # Coverage directory used by tools like istanbul
 coverage/
@@ -16,5 +17,6 @@ node_modules/
 # Output of 'npm pack'
 *.tgz
 
-# Test config files
+# Test files
+test/
 theme.config*.json

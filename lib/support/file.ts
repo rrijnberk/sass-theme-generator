@@ -1,6 +1,12 @@
-const fs = require('fs-extra');
-
 const config = require('./configuration.ts');
+const fs = require('fs-extra');
+const rimraf = require('rimraf');
+
+
+function removeFile(path, fileName) {
+    const file = `${path}/${fileName}`;
+    rimraf(file, () => {});
+}
 
 function writeFile(path, fileName, content) {
     const file = `${path}/${fileName}`;
@@ -9,5 +15,6 @@ function writeFile(path, fileName, content) {
 }
 
 module.exports = {
+    remove: removeFile,
     write: writeFile
 };

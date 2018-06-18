@@ -1,7 +1,9 @@
 const fs = require('fs-extra');
 const path = require('path');
+const { scssFunctions } = require('../support/scss-functions.parser.ts');
 
-const importRegex = /@import \"(.*)\";/g;
+const importRegex = /\@import (?:\"|\')(.*?)(?:\"|\');/g;
+const uriRegex = /^(.*)\/(?:.*?).scss$/;
 
 function getFileName(_path, result) {
     if(fs.existsSync(_path.concat('/', result, '.scss'))) {
@@ -10,7 +12,7 @@ function getFileName(_path, result) {
 }
 
 function getPartialName(_path, result) {
-    result = result.split('/')
+    result = result.split('/');
     result = result.slice(0, -1).concat('_' + result.splice(-1)).join('/');
     if(fs.existsSync(_path.concat('/', result, '.scss'))) {
         return path.resolve(_path, result.concat('.scss'));
@@ -19,40 +21,29 @@ function getPartialName(_path, result) {
 
 function SassFile(uri) {
     let _content = fs.readFileSync(uri).toString(),
-        _path = uri.split('/').slice(0,-1).join('/'),
-        m, files = [];
+        _root = uriRegex.exec(uri)[1];
 
-    while ((m = importRegex.exec(_content)) !== null) {
-        let fileLocation = null;
+    this.importedContent = (full, target) => {
+        let filePath;
 
-        if (m.index === importRegex.lastIndex) {
-            importRegex.lastIndex++;
-        }
-
-        fileLocation = getFileName(_path, m[1]);
-        fileLocation = getPartialName(_path, m[1]);
-
-        if(fileLocation) {
-            files.push({
-                statement: m[0],
-                location: fileLocation
-            });
-        }
-    }
-
-    files.map(file => {
-        let sassFile;
-        if(file.location) {
-            sassFile = new SassFile(file.location);
-            _content = _content.replace(file.statement, sassFile.toString());
+        if(fs.existsSync(filePath = path.resolve(_root, target.concat('.scss'))) ||
+            fs.existsSync(filePath = path.resolve(_root, target.replace(/^(.*)\/(.*)$/, '$1/_$2.scss')))
+        ) {
+            return (new SassFile(filePath)).toString();
         } else {
-            throw new Error(`No file found for ${m[0]}.`);
+            console.error(`Attempt to import non existent reference '${target}' in file: '${uri}'.`);
+            process.exit(1);
         }
-    });
+    };
+
+    _content = _content
+        .replace(importRegex, this.importedContent)
+        .replace(scssFunctions.functionCommentResolver, scssFunctions.parse);
 
     this.toString = () => {
         return _content;
     };
 }
+
 
 module.exports = SassFile;

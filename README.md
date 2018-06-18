@@ -70,3 +70,40 @@ Then the **theme.config.json** would then look like:
   "name": "royal"
 }
 ```
+
+## Function comment support (1.1.x +)
+To create more support for functional css with themes function comments allow the generation of functional classes.
+
+The function comment delimiter is __//@fn__ which is followed by the variable declarations.
+The pattern delimiter is __=>__ which is followed by the pattern where $0 refers to the first variable set, $1 to the second and so on.
+
+> Be aware that each set of variables creates a subset of results. I.E. ```[ 1, 2 ][ A, B, C ]``` results in ```[[1A, 1B, 1C], [2A, 2B, 2C]]```  
+
+If we add a function comment like:
+```scss
+//@fn [ top, right, bottom, left][ xs, s, n, l, xl] => .margin-$0-$1 { margin-$0: $tier__spacing--$1; }
+```
+
+This would result in the comment being substituted by:
+```scss
+.margin-top-xs { margin-top: tier__spacing--xs; }
+.margin-top-s { margin-top: tier__spacing--s; }
+.margin-top-n { margin-top: tier__spacing--n; }
+.margin-top-l { margin-top: tier__spacing--l; }
+.margin-top-xl { margin-top: tier__spacing--xl; }
+.margin-right-xs { margin-right: tier__spacing--xs; }
+.margin-right-s { margin-right: tier__spacing--s; }
+.margin-right-n { margin-right: tier__spacing--n; }
+.margin-right-l { margin-right: tier__spacing--l; }
+.margin-right-xl { margin-right: tier__spacing--xl; }
+.margin-bottom-xs { margin-bottom: tier__spacing--xs; }
+.margin-bottom-s { margin-bottom: tier__spacing--s; }
+.margin-bottom-n { margin-bottom: tier__spacing--n; }
+.margin-bottom-l { margin-bottom: tier__spacing--l; }
+.margin-bottom-xl { margin-bottom: tier__spacing--xl; }
+.margin-left-xs { margin-left: tier__spacing--xs; }
+.margin-left-s { margin-left: tier__spacing--s; }
+.margin-left-n { margin-left: tier__spacing--n; }
+.margin-left-l { margin-left: tier__spacing--l; }
+.margin-left-xl { margin-left: tier__spacing--xl; }
+```
