@@ -10,7 +10,6 @@ function ScssFunctions() {
     local.stitch = stitch;
 
     function commentFunctionHandler(full, declaration) {
-        console.log('Replacing -->', full, declaration)
         if (functionConfigResolver.test(declaration)) {
             const [_, handler, variables, pattern] = functionConfigResolver.exec(declaration);
 
