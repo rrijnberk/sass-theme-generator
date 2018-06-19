@@ -8,7 +8,7 @@
     "sass-theme": "lib/cli.ts"
   },
   "scripts": {
-    "test": "mocha **/*.spec.ts"
+    "test": "mocha test/specs/**/*.spec.ts"
   },
   "keywords": [
     "Sass",

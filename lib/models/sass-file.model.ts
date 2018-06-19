@@ -19,6 +19,11 @@ function getPartialName(_path, result) {
     }
 }
 
+function underscoredTarget(target) {
+    const [_, pre, post] = /^(.*)\/(.*)$/.exec(target) || [null, target, null];
+    return !post ? `_${pre}.scss` : `${pre}/_${post}.scss`;
+}
+
 function SassFile(uri) {
     let _content = fs.readFileSync(uri).toString(),
         _root = uriRegex.exec(uri)[1];
@@ -27,18 +32,20 @@ function SassFile(uri) {
         let filePath;
 
         if(fs.existsSync(filePath = path.resolve(_root, target.concat('.scss'))) ||
-            fs.existsSync(filePath = path.resolve(_root, target.replace(/^(.*)\/(.*)$/, '$1/_$2.scss')))
+            fs.existsSync(filePath = path.resolve(_root, underscoredTarget(target)))
         ) {
             return (new SassFile(filePath)).toString();
         } else {
-            console.error(`Attempt to import non existent reference '${target}' in file: '${uri}'.`);
+            console.error(`Attempt to import non existent reference '${filePath}' in file: '${uri}'.`);
             process.exit(1);
         }
     };
 
+
+    console.log('...')
     _content = _content
         .replace(importRegex, this.importedContent)
-        .replace(scssFunctions.functionCommentResolver, scssFunctions.parse);
+        .replace(scssFunctions.functionCommentResolver, scssFunctions.commentFunctionHandler);
 
     this.toString = () => {
         return _content;
