@@ -1,7 +1,5 @@
-require('../../support/regexp.extensions.ts');
-
 const chai = require('chai');
-const {scssFunctions} = require('../../../lib/support/scss-functions.parser.ts');
+const {scssFunctions} = require('../../../../lib/support/scss-functions.parser.ts');
 
 describe('SCSS Comment functions', function () {
     const source = `

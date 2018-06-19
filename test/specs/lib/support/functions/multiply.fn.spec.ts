@@ -1,5 +1,5 @@
 const chai = require('chai');
-const {multiply} = require('../../../../lib/support/functions/multiply.fn.ts');
+const {multiply} = require('../../../../../lib/support/functions/multiply.fn.ts');
 
 describe('Comment function : multiply : ', () => {
     it('renders the correct results for a single level set', () => {

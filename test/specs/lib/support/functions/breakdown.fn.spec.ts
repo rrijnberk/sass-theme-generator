@@ -1,5 +1,5 @@
 const chai = require('chai');
-const {breakdown} = require('../../../../lib/support/functions/breakdown.fn.ts');
+const {breakdown} = require('../../../../../lib/support/functions/breakdown.fn.ts');
 
 describe('Support function : breakdown : ', () => {
 
