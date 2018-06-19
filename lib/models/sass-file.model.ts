@@ -41,9 +41,11 @@ function SassFile(uri) {
         }
     };
 
+
+    console.log('...')
     _content = _content
         .replace(importRegex, this.importedContent)
-        .replace(scssFunctions.functionCommentResolver, scssFunctions.parse);
+        .replace(scssFunctions.functionCommentResolver, scssFunctions.commentFunctionHandler);
 
     this.toString = () => {
         return _content;

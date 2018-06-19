@@ -4,14 +4,14 @@ const {scssFunctions} = require('../../../../lib/support/scss-functions.parser.t
 describe('SCSS Comment functions', function () {
     const source = `
 This is some text in front
-//@fn multiply [ a, b, c, d ][ s, n, l ] => .margin-$0-$1 { margin-$0: $1px; };
+//@fn multiply [ a, b, c, d ][ s, n, l ] => .margin-$0-$1 { margin-$0: $1px; }
 
-//@fn multiply [ a, b ][ 1, 2 ] => .margin-$0-$1 { margin-$0: $1px; };
+//@fn multiply [ a, b ][ 1, 2 ] => .margin-$0-$1 { margin-$0: $1px; }
 This is some text in the middle
-//@fn multiply [ c, d ][ 3, 4 ] => .margin-$0-$1 { margin-$0: $1px; };
+//@fn multiply [ c, d ][ 3, 4 ] => .margin-$0-$1 { margin-$0: $1px; }
 
 
-//@fn multiply [ top, right, bottom, left][ s, n, l ] => .margin-$0-$1 { margin-$0: $1px; };
+//@fn multiply [ top, right, bottom, left][ s, n, l ] => .margin-$0-$1 { margin-$0: $1px; }
 This is some text at the end        
 `;
 
