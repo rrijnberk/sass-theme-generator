@@ -3,7 +3,7 @@ const path = require('path');
 const { scssFunctions } = require('../support/scss-functions.parser.ts');
 
 const importRegex = /\@import (?:\"|\')(.*?)(?:\"|\');/g;
-const uriRegex = /^(.*)\/(?:.*?).scss$/;
+const uriRegex = /^(.*)(?:\/|\\){1,}(?:.*?).scss$/;
 
 function getFileName(_path, result) {
     if(fs.existsSync(_path.concat('/', result, '.scss'))) {
