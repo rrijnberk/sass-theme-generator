@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const { scssFunctions } = require('../support/scss-functions.parser.ts');
 
-const importRegex = /\@import (?:\"|\')(.*?)(?:\"|\');/g;
+const importRegex = /\@import (?:\"|\')(.*?)(?:\"|\');/gm;
 const uriRegex = /^(.*)(?:\/|\\){1,}(?:.*?).scss$/;
 
 function getFileName(_path, result) {

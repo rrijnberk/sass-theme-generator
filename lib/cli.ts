@@ -43,21 +43,22 @@ function getSources() {
  */
 function generateTheme() {
     // Resolve variable & source content
-    const variables = getVariables(),
-        sources = getSources(),
-        compilationSource = variables.concat('\n\n', sources);
+    const variables = getVariables();
 
-    // Write theme sources.
-    file.write(config.target, `src/${config.name}_variables.scss`, variables);
-    file.write(config.target, `src/${config.name}_sources.scss`, sources);
+    console.log(variables)
 
-    file.write(config.target, `tmp/compilation.source.scss`, compilationSource);
-    // Write stylesheet.
-    sass.render({
-        data: compilationSource || 'body {}'
-    }, renderResponseHandler);
-
-
+    //     sources = getSources(),
+    //     compilationSource = variables.concat('\n\n', sources);
+    //
+    // // Write theme sources.
+    // file.write(config.target, `src/${config.name}_variables.scss`, variables);
+    // file.write(config.target, `src/${config.name}_sources.scss`, sources);
+    //
+    // file.write(config.target, `tmp/compilation.source.scss`, compilationSource);
+    // // Write stylesheet.
+    // sass.render({
+    //     data: compilationSource || 'body {}'
+    // }, renderResponseHandler);
 }
 
 /**

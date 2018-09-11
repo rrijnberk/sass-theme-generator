@@ -3,7 +3,7 @@ const { stitch   } = require('./functions/stitch.fn.ts');
 
 function ScssFunctions() {
     const local = this;
-    const functionCommentResolver = /\/{2}@fn\s{1,}(.*(;|}))(?:\n|$)/g;
+    const functionCommentResolver = /\/{2}@fn\s{1,}(.*(;|}))(?:\n|$)/gm;
     const functionConfigResolver = /^(.*?)\s{1,}(\[\s{0,}.*?\s{0,}\]{1,})\s{1,}=>\s{1,}(.*)$/;
 
     local.multiply = multiply;
