@@ -9,7 +9,8 @@ const renderResponseHandler = require('./handlers/render-response.handler.ts');
 const SassFile = require('./models/sass-file.model.ts');
 const Variables = require('./support/variables.ts');
 
-const noop = () => {};
+const noop = () => {
+};
 
 /**
  * Resolve and flatten variables.
@@ -43,22 +44,19 @@ function getSources() {
  */
 function generateTheme() {
     // Resolve variable & source content
-    const variables = getVariables();
+    const variables = getVariables(),
+        sources = getSources(),
+        compilationSource = variables.concat('\n\n', sources);
 
-    console.log(variables)
+    // Write theme sources.
+    file.write(config.target, `src/${config.name}_variables.scss`, variables);
+    file.write(config.target, `src/${config.name}_sources.scss`, sources);
 
-    //     sources = getSources(),
-    //     compilationSource = variables.concat('\n\n', sources);
-    //
-    // // Write theme sources.
-    // file.write(config.target, `src/${config.name}_variables.scss`, variables);
-    // file.write(config.target, `src/${config.name}_sources.scss`, sources);
-    //
-    // file.write(config.target, `tmp/compilation.source.scss`, compilationSource);
-    // // Write stylesheet.
-    // sass.render({
-    //     data: compilationSource || 'body {}'
-    // }, renderResponseHandler);
+    file.write(config.target, `tmp/compilation.source.scss`, compilationSource);
+    // Write stylesheet.
+    sass.render({
+        data: compilationSource || 'body {}'
+    }, renderResponseHandler);
 }
 
 /**
